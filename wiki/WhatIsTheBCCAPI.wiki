@@ -1,0 +1,25 @@
+= What is the BCCAPI? =
+
+Simply put the BCCAPI (BitCoin Client API) allows you to create a light-weight secure Bitcoin client in Java. The BCCAPI connects to a server that holds the block chain, and which tracks the client’s wallet balance on the clients behalf. The server only has knowledge of the clients public keys, and is in no position to spend funds owned by the client’s wallet.
+
+Features for clients based on the BCCAPI:
+ * Bandwidth. The client only transmits or receives data when it:
+  * Gets its balance
+  * Adds public keys to its wallet
+  * Sends bitcoins
+ *Security
+  * Only the client holds the private keys of the wallet.
+  * The server only holds the corresponding public keys, and cannot spend funds from the wallet.
+  * All private keys are derived from a strong seed which is encrypted and stored on the client with a user selected password and a user selected salt with arbitrary length.
+  * If someone obtains a copy of the encrypted seed file they will have to bruteforce the file before the theft is discovered and the funds moved elsewhere.
+  * The seed itself is based on a user entered long passphrase (not the password) and a salt with arbitrary length combined with several rounds of scrypt for keystretching. Scrypt is designed to be far more secure against hardware brute-force attacks than alternative functions such as PBKDF2 or bcrypt. (http://www.tarsnap.com/scrypt/scrypt.pdf) This process takes a significant amount of time on small devices, but is a one-time process which is part of client initialization.
+  * All client-server communication is secured with HTTPS. 
+ * Sending Coins
+  * When sending coins the following process is used:
+   # The client requests a Send Coin Form from the server for a number of Bitcoins and a receiving address.
+   # The server collects funds from the client’s wallet’s unspent transactions and creates an unsigned transaction where any change is sent back to one of the client’s addresses. The transaction along with any transaction outputs funding it are inserted in a Send Coin Form which is sent to the client.
+   # The client verifies that the input funds, output funds, and receivers match what it requested.
+   # The client signs the transaction and sends it to the server.
+   # The server verifies the signature on the transaction and broadcasts it on the bitcoin network.
+ * Backup
+  * There is no need to backup anything on the client. If the encrypted seed file is lost it can be recreated from the initial  passphrase and salt on a different device.
