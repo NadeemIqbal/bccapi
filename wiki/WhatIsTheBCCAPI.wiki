@@ -7,7 +7,7 @@ Features for clients based on the BCCAPI:
   * Gets its balance
   * Adds public keys to its wallet
   * Sends bitcoins
- *Security
+ * Security
   * Only the client holds the private keys of the wallet.
   * The server only holds the corresponding public keys, and cannot spend funds from the wallet.
   * All private keys are derived from a strong seed which is encrypted and stored on the client with a user selected password and a user selected salt with arbitrary length.
