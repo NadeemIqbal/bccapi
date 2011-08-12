@@ -68,4 +68,4 @@ The BCCAPI server is running at Rackspace and can handle many simultaneous accou
 
 
 == Donations Accepted ==
-If you want to support the BCCAPI and keep it as a free service please send donations to: 143SikKpjzwhBy5Z7Qg5knu5nKXWExSqQi
+If you want to support the BCCAPI and keep it as a free service please send donations to: *143SikKpjzwhBy5Z7Qg5knu5nKXWExSqQi*
