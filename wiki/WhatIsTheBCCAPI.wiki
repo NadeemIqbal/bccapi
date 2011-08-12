@@ -15,6 +15,8 @@ Features for clients based on the BCCAPI:
   * If someone obtains a copy of the encrypted seed file they will have to bruteforce the file before the theft is discovered and the funds moved elsewhere.
   * The seed itself is based on a user entered long passphrase (not the password) and a salt with arbitrary length combined with several rounds of scrypt for keystretching. Scrypt is designed to be far more secure against hardware brute-force attacks than alternative functions such as PBKDF2 or bcrypt. (http://www.tarsnap.com/scrypt/scrypt.pdf) This process takes a significant amount of time on small devices, but is a one-time process which is part of client initialization.
   * All client-server communication is secured using HTTPS. 
+ * Logging In
+  * The client has a private key which is deterministically derived jut like the wallet private keys. When logging in to the server the client presents its public key and obtains a random challenge. The client hashes the challenge and signs it using its private key. The signed challenge is returned to the server along with the public key. On first login a new account is created, which is associated with the public of the client.
  * Sending Coins
   * When sending coins the following process is used:
    # The client requests a Send Coin Form from the server for a number of Bitcoins and a receiving address.
@@ -22,11 +24,18 @@ Features for clients based on the BCCAPI:
    # The client verifies that the input funds, output funds, and receivers match what it requested.
    # The client signs the transaction and sends it to the server.
    # The server verifies the signature on the transaction and broadcasts it on the bitcoin network.
- * Logging In (TODO)
  * Backup
   * There is no need to backup anything on the client. If the encrypted seed file is lost it can be recreated from the initial  passphrase and salt on a different device.
 
 The BCCAPI provides all of the above as well-documented easy to read source code, and is a perfect match if you want to write a light-weight secure Andriod app for sending and receiving BTC.
 
 == The Server Side ==
-The BCCAPI server is running at Rackspace and can handle many simultaneous accounts. For each account the server holds a public key which is associated with all the public keys added to the account's wallet. When logging in to the server the client gets a random challenge which it must hash and sign to prove that it holds the account's private key.
+The BCCAPI server is running at Rackspace and can handle many simultaneous accounts. For each account the server holds a public key which is associated with all the public keys added to the account's wallet. The server is connected to the Bitcoin network and keeps track of the block chain, and does all the bookkeeping necessary to keep wallets up to date.
+
+=== FAQ ===
+ * Q: *Does the server have my wallet?*
+ * A: The BCCAPI basically splits your wallet into two. 
+  # A public part which is on the server side, which allows the server to keep track of the transaction inputs and outputs of your wallet. For this purpose it needs to know the public keys of your wallet.
+  # A private part which is on the client side. The client part is the one in control of the private keys, which allows you to sign transactions and spend bitcoins.
+ * Q: Can the server spend my bitcoins?
+ * A: No. The server is in no position to sign transactions associated with your wallet.
