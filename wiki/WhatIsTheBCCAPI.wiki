@@ -54,6 +54,6 @@ The BCCAPI server is running at Rackspace and can handle many simultaneous accou
  * Q: *What does this service cost for me?*
  * A: Nothing. Running and maintaining the server side does costs money, but the hope is that donations can keep the bills from piling. Going forward we may add the option of paying a small fee for getting connected to a priority server, which provides faster service.
 
-
-
+== Donations Accepted ==
+If you want to support the BCCAPI and keep it as a free service please send donations to: *143SikKpjzwhBy5Z7Qg5knu5nKXWExSqQi*
 
