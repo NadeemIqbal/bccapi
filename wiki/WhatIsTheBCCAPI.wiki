@@ -56,7 +56,7 @@ The BCCAPI server is running at Rackspace and can handle many simultaneous accou
   # The server can go offline and never come back.
   In all of the above scenarios you would be unhappy and wanting to evacuate all of your bitcoins to somewhere else. Since the server has no control over your bitcoins this is not a problem. All the private keys are deterministically generated from your passphrase and salt. You simply run a tool that generates a wallet.dat file for the ordinary bitcoin client. 
 
- * Q Where can I get this tool?
+ * Q: Where can I get this tool?
  * A: It hasn't been developed yet, but it is pretty straightforward to create a tool using the BCCAPI that prints out all your private key. Next thing is to import them into a wallet.dat file. This can be done using [https://github.com/joric/pywallet pywallet]. A turnkey tool is in progress.
 
  * Q: Are there limits on the number of addresses I can use?
