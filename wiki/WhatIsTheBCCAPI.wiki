@@ -4,33 +4,33 @@ Simply put the BCCAPI (*B* it *C* oin *C* lient *API*) allows you to create a li
 
 Features for clients based on the BCCAPI:
 
- * Bandwidth. The client only transmits or receives data when it:
-  * Logs in
-  * Gets its balance
-  * Adds public keys to its wallet
-  * Sends bitcoins
+  * Bandwidth. The client only transmits or receives data when it:
+   * Logs in
+   * Gets its balance
+   * Adds public keys to its wallet
+   * Sends bitcoins
 
- * Security
-  * Only the client holds the private keys of the wallet.
-  * The server only holds the corresponding public keys, and cannot spend funds from the wallet.
-  * All private keys are deterministically derived from a strong seed which is encrypted and stored on the client with a user selected password and a user selected salt with arbitrary length.
-  * If someone obtains a copy of the encrypted seed file they will have to bruteforce the file before the theft is discovered and the funds moved elsewhere.
-  * The seed itself is based on a user entered long passphrase (not the password) and a salt with arbitrary length combined with several rounds of scrypt for keystretching. Scrypt is designed to be far more secure against hardware brute-force attacks than alternative functions such as PBKDF2 or bcrypt. (http://www.tarsnap.com/scrypt/scrypt.pdf) This process takes a significant amount of time on small devices, but is a one-time process which is part of client initialization.
-  * All client-server communication is secured using HTTPS. 
+  * Security
+   * Only the client holds the private keys of the wallet.
+   * The server only holds the corresponding public keys, and cannot spend funds from the wallet.
+   * All private keys are deterministically derived from a strong seed which is encrypted and stored on the client with a user selected password and a user selected salt with arbitrary length.
+   * If someone obtains a copy of the encrypted seed file they will have to bruteforce the file before the theft is discovered and the funds moved elsewhere.
+   * The seed itself is based on a user entered long passphrase (not the password) and a salt with arbitrary length combined with several rounds of scrypt for keystretching. Scrypt is designed to be far more secure against hardware brute-force attacks than alternative functions such as PBKDF2 or bcrypt. (http://www.tarsnap.com/scrypt/scrypt.pdf) This process takes a significant amount of time on small devices, but is a one-time process which is part of client initialization.
+   * All client-server communication is secured using HTTPS. 
 
- * Logging In
-  * The client has a private key which is deterministically derived jut like the wallet private keys. When logging in to the server the client presents its public key and obtains a random challenge. The client hashes the challenge and signs it using its private key. The signed challenge is returned to the server along with the public key. On first login a new account is created, which is associated with the public of the client.
+  * Logging In
+   * The client has a private key which is deterministically derived jut like the wallet private keys. When logging in to the server the client presents its public key and obtains a random challenge. The client hashes the challenge and signs it using its private key. The signed challenge is returned to the server along with the public key. On first login a new account is created, which is associated with the public of the client.
 
- * Sending Coins
-  * When sending coins the following process is used:
-   # The client requests a Send Coin Form from the server for a number of Bitcoins and a receiving address.
-   # The server collects funds from the client’s wallet’s unspent transactions and creates an unsigned transaction where any change is sent back to one of the client’s addresses. The transaction along with any transaction outputs funding it are inserted in a Send Coin Form which is sent to the client.
-   # The client verifies that the input funds, output funds, and receivers match what it requested.
-   # The client signs the transaction and sends it to the server.
-   # The server verifies the signature on the transaction and broadcasts it on the bitcoin network.
+  * Sending Coins
+   * When sending coins the following process is used:
+    # The client requests a Send Coin Form from the server for a number of Bitcoins and a receiving address.
+    # The server collects funds from the client’s wallet’s unspent transactions and creates an unsigned transaction where any change is sent back to one of the client’s addresses. The transaction along with any transaction outputs funding it are inserted in a Send Coin Form which is sent to the client.
+    # The client verifies that the input funds, output funds, and receivers match what it requested.
+    # The client signs the transaction and sends it to the server.
+    # The server verifies the signature on the transaction and broadcasts it on the bitcoin network.
 
- * Backup
-  * There is no need to backup anything on the client. If the encrypted seed file is lost it can be recreated from the initial  passphrase and salt on a different device.
+  * Backup
+   * There is no need to backup anything on the client. If the encrypted seed file is lost it can be recreated from the initial  passphrase and salt on a different device.
 
 The BCCAPI provides all of the above as well-documented easy to read source code, and is a perfect match if you want to write a light-weight secure Andriod app for sending and receiving BTC.
 
@@ -39,31 +39,31 @@ The BCCAPI server is running at Rackspace and can handle many simultaneous accou
 
 === FAQ ===
 
- * Q: Does the server have my wallet?
- * A: The BCCAPI basically splits your wallet into two. 
-  # A public part which is on the server side, which allows the server to keep track of the transaction inputs and outputs of your wallet. For this purpose it needs to know the public keys of your wallet.
-  # A private part which is on the client side. The client part is the one in control of the private keys, which allows you to sign transactions and spend bitcoins.
+  * Q: Does the server have my wallet?
+  * A: The BCCAPI basically splits your wallet into two. 
+   # A public part which is on the server side, which allows the server to keep track of the transaction inputs and outputs of your wallet. For this purpose it needs to know the public keys of your wallet.
+   # A private part which is on the client side. The client part is the one in control of the private keys, which allows you to sign transactions and spend bitcoins.
 
- * Q: Can the server spend my bitcoins?
- * A: No. The server is in no position to sign transactions associated with your wallet.
+  * Q: Can the server spend my bitcoins?
+  * A: No. The server is in no position to sign transactions associated with your wallet.
 
- * Q: What evilness can the server do?
- * A: While the server cannot spend your bitcoins, there is some evilness that the server can do:
-  # The server can lie about the wallet balance, making you believe that it is higher or lower than what it really is.
-  # The server can make you believe that you have sent some bitcoins, while it just did not forward the transaction to the network.
-  # The server can try to make you sign a transaction that has input which is already spent. In this case the transaction will be invalid and rejected by the network. You will not loose any bitcoins.
-  # The server can try to make you sign a transaction which sends money to someone else than what you asked for. The client always validates that a transaction is for the intended recipients before signing, so in this case the client will reject the transaction.
-  # The server can go offline and never come back.
+  * Q: What evilness can the server do?
+  * A: While the server cannot spend your bitcoins, there is some evilness that the server can do:
+   # The server can lie about the wallet balance, making you believe that it is higher or lower than what it really is.
+   # The server can make you believe that you have sent some bitcoins, while it just did not forward the transaction to the network.
+   # The server can try to make you sign a transaction that has input which is already spent. In this case the transaction will be invalid and rejected by the network. You will not loose any bitcoins.
+   # The server can try to make you sign a transaction which sends money to someone else than what you asked for. The client always validates that a transaction is for the intended recipients before signing, so in this case the client will reject the transaction.
+   # The server can go offline and never come back.
   In all of the above scenarios you would be unhappy and wanting to evacuate all of your bitcoins to somewhere else. Since the server has no control over your bitcoins this is not a problem. All the private keys are deterministically generated from your passphrase and salt. You simply run a tool that generates a wallet.dat file for the ordinary bitcoin client. 
 
- * Q: Where can I get this tool?
- * A: It hasn't been developed yet, but it is pretty straightforward to create a tool using the BCCAPI that prints out all your private key. Next thing is to import them into a wallet.dat file. This can be done using [https://github.com/joric/pywallet pywallet]. A turnkey tool is in progress.
+  * Q: Where can I get this tool?
+  * A: It hasn't been developed yet, but it is pretty straightforward to create a tool using the BCCAPI that prints out all your private key. Next thing is to import them into a wallet.dat file. This can be done using [https://github.com/joric/pywallet pywallet]. A turnkey tool is in progress.
 
- * Q: Are there limits on the number of addresses I can use?
- * A: For now the number of addresses you can associate with one account is limited to 10. This is to limit the strain on the server side. 
+  * Q: Are there limits on the number of addresses I can use?
+  * A: For now the number of addresses you can associate with one account is limited to 10. This is to limit the strain on the server side. 
 
- * Q: What does this service cost for me?
- * A: Nothing. Running and maintaining the server side does costs money, but the hope is that donations can keep the bills from piling. Going forward we may add the option of paying a small fee for getting connected to a priority server, which provides faster service.
+  * Q: What does this service cost for me?
+  * A: Nothing. Running and maintaining the server side does costs money, but the hope is that donations can keep the bills from piling. Going forward we may add the option of paying a small fee for getting connected to a priority server, which provides faster service.
 
 
 == Donations Accepted ==
