@@ -1,7 +1,7 @@
 #labels bitcoin,SimpleClient,bccapi
 =Trying out the BCCAPI with SimpleClient=
 
-SimpleClient is a text-based bitcoin client implemented on top of the BCCAPI. It is written in Java and open source.
+!SimpleClient is a text-based bitcoin client implemented on top of the BCCAPI. It is written in Java and open source.
 
 == Building Everything Yourself ==
 Software needed: [http://subversion.apache.org Subversion],  [http://www.oracle.com/technetwork/java/javase/downloads/index.html JDK], [http://ant.apache.org/bindownload.cgi Ant].
@@ -19,3 +19,8 @@ Software needed: [http://www.java.com/en/download/ JRE] or [http://www.oracle.co
   # For the bitcoin test network: `java -jar bccapi.jar testnet`
   # For the bitcoin production network: `java -jar bccapi.jar prodnet`
  # Follow the instructions
+
+== Testing it==
+ # Go to the [https://testnet.freebitcoins.appspot.com/ Bitcoin Testnet Fauchet] and transfer some coins to one of your addresses. 
+ # Follow the transaction on the [http://blockexplorer.com/testnet Testnet Block Explorer].
+ # Once it ticks in check your balance using the !SimlpeClient
