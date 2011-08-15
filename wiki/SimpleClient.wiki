@@ -7,20 +7,27 @@
 Software needed: [http://subversion.apache.org Subversion],  [http://www.oracle.com/technetwork/java/javase/downloads/index.html JDK], [http://ant.apache.org/bindownload.cgi Ant].
  # Get the code: `svn checkout http://bccapi.googlecode.com/svn/trunk/ bccapi`
  # Compile the jar: `cd bccapi && ant clean bccapi-jar`
- # Start the SimpleClient:
-  # For the bitcoin test network: `java -jar build/jar/bccapi.jar testnet`
-  # For the bitcoin production network: `java -jar build/jar/bccapi.jar prodnet`
- # Follow the instructions
+ # The jar file is located here: bccapi/build/jar/bccapi.jar
 
 == Using a Pre-Built JAR ==
 Software needed: [http://www.java.com/en/download/ JRE] or [http://www.oracle.com/technetwork/java/javase/downloads/index.html JDK] 
  # Download [http://code.google.com/p/bccapi/downloads/list bccapi.jar]
- # Start the SimpleClient:
-  # For the bitcoin test network: `java -jar bccapi.jar testnet`
-  # For the bitcoin production network: `java -jar bccapi.jar prodnet`
- # Follow the instructions
 
-== Testing it==
+== Testing it on the Bitcoin Test Network==
+This is using test bitcoins who have no real value. For test net !SimpleClient needs to be able to communicate to the internet using destination port 444 (HTTPS port +1).
+ # Run it from a command line like this: `java -jar bccapi.jar testnet`
+ # Follow the instructions
+ # Use option 2 to see your bitcoin addresses.
  # Go to the [https://testnet.freebitcoins.appspot.com/ Bitcoin Testnet Fauchet] and transfer some coins to one of your addresses. 
  # Follow the transaction on the [http://blockexplorer.com/testnet Testnet Block Explorer].
  # Once it ticks in check your balance using !SimlpeClient
+
+== Testing it on the Bitcoin Production Network==
+This is using production bitcoins with real value.
+ # Run it from a command line like this: `java -jar bccapi.jar prodnet`
+ # Follow the instructions
+ # Use option 2 to see your bitcoin addresses.
+ # Transfer some bitcoins to one of the listed addresses using the official bitcoin client. Yes, you need to have some bitcoins to do this.
+ # Follow the transaction on the [http://blockexplorer.com Block Explorer].
+ # Once it ticks in check your balance using !SimlpeClient
+
