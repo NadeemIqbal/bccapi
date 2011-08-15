@@ -19,7 +19,7 @@ This is using test bitcoins who have no real value. For test net !SimpleClient n
  # Follow the instructions
  # Use option 2 to see your bitcoin addresses.
  # Go to the [https://testnet.freebitcoins.appspot.com/ Bitcoin Testnet Fauchet] and transfer some coins to one of your addresses. 
- # Follow the transaction on the [http://blockexplorer.com/testnet Testnet Block Explorer].
+ # Follow the transaction on the [http://blockexplorer.com/testnet Testnet Block Explorer]. Note that the test net may have long periods where no blocks are generated.
  # Once it ticks in check your balance using !SimlpeClient
 
 == Testing it on the Bitcoin Production Network==
@@ -30,4 +30,3 @@ This is using production bitcoins with real value.
  # Transfer some bitcoins to one of the listed addresses using the official bitcoin client. Yes, you need to have some bitcoins to do this.
  # Follow the transaction on the [http://blockexplorer.com Block Explorer].
  # Once it ticks in check your balance using !SimlpeClient
-
