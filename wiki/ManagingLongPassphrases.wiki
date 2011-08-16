@@ -1,0 +1,42 @@
+= Managing Long Passphrases =
+
+The security of BCCAPI's deterministic wallet depends on the strength of the passphrase. The user is required to either memorize the passphrase or write it down on a piece of paper. Memorizing may not be a valid option as you simply risk forgetting the passphrase. Writing the passphrase on paper poses different challenges:
+
+ # It may get lost
+ # Someone else may find it
+ # Entering long passphrases on a mobile device is cumbersome
+
+To address these shortcomings I propose that we use Shamir's Secret Sharing and QR codes.
+
+== Shamir's Secret Sharing ==
+
+Shamir's Secret Sharing is a mechanism where you split a secret into N pieces and decide for a number K which is less than N. If you have K different pieces of the original N it is trivial to calculate the secret. If you have K-1 pieces the secret is completely undetermined, meaning that any possible value is likely. Details here: [http://en.wikipedia.org/wiki/Shamir's_Secret_Sharing Shamir's Secret Sharing]
+
+Example Choosing N=3 and K=2:
+ # You split your secret into 3 pieces. 
+ # You then store those pieces in three different secure locations. 
+ # You delete any other trace of the secret.
+
+If you ever want to recreate the secret you can do so by retrieving any 2 of the 3 pieces.
+If an attacker gets hold of one of your pieces he will not be able to determine the secret.
+If one of the pieces are lost you can still rebuild the secret from the other two.
+
+You may also want to choose N=5 and K=3 or whatever makes you feel safe.
+
+== How can we Apply This ==
+
+Assume that we want to use this mechanism for protecting the seed for the BCCAPI's deterministic wallet. This is what you do:
+
+ # Start the !SeedSplitterTool 
+ # Enter your long passphrase and salt
+ # The seed gets calculated
+ # Choose your parameters for N and K (say N=3 and K=2). 
+ # The tool generates 3 bitmaps with QR codes for the 3 shares.
+ # The tool prints out the shares on a printer you trust.
+
+Now with your three pieces of paper you go ahead and initialize your Android wallet by scanning 2 of the 3 QR codes. Next thing is to store the 3 shares in a proper place.
+
+So why are we not doing this today?
+ # The !SeedSplitterTool does not yet exist. I'll include evertyhing needed to generate/combine shares in the BCCAPI, but someone has to make an Android app that uses it.
+ # An Android app using the BCCAPI is yet to be made. I am not an Android developer and not good at making UIs anyway.
+
