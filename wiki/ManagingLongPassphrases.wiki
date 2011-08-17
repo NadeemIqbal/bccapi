@@ -25,18 +25,19 @@ You may also want to choose N=5 and K=3 or whatever makes you feel safe.
 
 == How can we Apply This ==
 
-Assume that we want to use this mechanism for protecting the seed for the BCCAPI's deterministic wallet. This is what you do:
+Assume that we want to use this mechanism for protecting the seed for the BCCAPI's deterministic wallet. Thisis roughly how it would work:
 
- # Start the !SeedSplitterTool 
- # Enter your long passphrase and salt
- # The seed gets calculated
+ # Start your Android Bitcoin Tool for the first time
+ # A totally random seed gets generated, (not based on passphrase + salt)
  # Choose your parameters for N and K (say N=3 and K=2). 
  # The tool generates 3 bitmaps with QR codes for the 3 shares.
  # The tool prints out the shares on a printer you trust.
 
 Now with your three pieces of paper you go ahead and initialize your Android wallet by scanning 2 of the 3 QR codes. Next thing is to store the 3 shares in a proper place.
 
-So why are we not doing this today?
- # The !SeedSplitterTool does not yet exist. I'll include evertyhing needed to generate/combine shares in the BCCAPI, but someone has to make an Android app that uses it.
- # An Android app using the BCCAPI is yet to be made. I am not an Android developer and not good at making UIs anyway.
+Now the interesting thing here is that we can actually turn things around. With the SimpleClient you have to enter a passphrase + salt and a password before even starting to use it for the interesting stuff. This is really cumbersome and may scare new users away. With the sharing scheme above the app can initialize itself with a random seed, and the user can eventually export the seed as a number of shares once he has tried it out. 
 
+
+So why are we not doing this today?
+
+The Android Bitcoin Tool does not yet exist. I'll include evertyhing needed to generate/combine shares in the BCCAPI, but someone has to make an Android app that uses it. I am not an Android developer and not good at making UIs anyway.
