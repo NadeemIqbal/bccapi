@@ -1,3 +1,4 @@
+#summary Ideas on how we can avoid managing long passphrases using Shamir's Secret Sharing
 = Managing Long Passphrases =
 
 The security of BCCAPI's deterministic wallet depends on the strength of the passphrase. The user is required to either memorize the passphrase or write it down on a piece of paper. Memorizing may not be a valid option as you simply risk forgetting the passphrase. Writing the passphrase on paper poses different challenges:
