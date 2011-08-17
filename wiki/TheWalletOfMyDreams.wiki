@@ -1,3 +1,4 @@
+#summary A description of the kind of wallet app I would like to be built on top of the BCCAPI
 = The Wallet of my Dreams =
 
 The wallet of my dreams is something I can carry around. Let's assume that it is an Android app on my smartphone.
