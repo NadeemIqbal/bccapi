@@ -1,4 +1,5 @@
 #summary A description of the kind of wallet app I would like to be built on top of the BCCAPI
+#labels Featured
 = The Wallet of my Dreams =
 
 The wallet of my dreams is something I can carry around. Let's assume that it is an Android app on my smartphone.
@@ -14,12 +15,12 @@ I want this with the following features:
  # I do not want to trust a third party for keeping my wallet private keys
 
 All of the above can be achieved using the BCCAPI:
- * Feature 1. All wallets are deterministically generated from passphrases. If you loose your device you can resurrect your wallets from their passphrases plus a common salt.
- * Feature 2 You do not need periodic backup beacuse of festure 1. You do however need to remember the passphrases + salt or write them down. Going forward we may even avoid this. (See my wiki on [ManagingLongPassphrases  Managing Long Passphrases])
+ * Feature 1. All wallets are deterministically generated from passphrases. If you loose your device you can resurrect your wallets from their passphrases plus a salt.
+ * Feature 2 You do not need periodic backup beacuse of feature 1. You do however need to remember the passphrases + salt or write them down. Going forward we may even avoid this. (See my wiki on [ManagingLongPassphrases  Managing Long Passphrases])
  * Feature 3. The wallet private keys are never leaving the device.
 
 Implementing the wallets using the BCCAPI: 
- # Wallet for cmall change: You already have it in the SimpleClient example of the BCCAPI. You just need to use an empty PIN and turn it into an Android app.
+ # Wallet for small change: You already have it in the SimpleClient example of the BCCAPI. You just need to use an empty PIN and turn it into an Android app.
  # Wallet for larger sums: You already have it in the SimpleClient example of the BCCAPI. You just need to turn it into an Android app
  # Vault: You already have it in the SimpleClient example of BCCAPI. You just need to reinitialize the wallet from scratch from a passphrase and salt, and never store the root seed on the device. This way every trace of your private keys are only ever in memory.
 
