@@ -1,4 +1,4 @@
-#summary How to build and run the !SimpleClient
+#summary How to build and run the SimpleClient
 #labels Featured
 =Trying out the BCCAPI with !SimpleClient=
 
