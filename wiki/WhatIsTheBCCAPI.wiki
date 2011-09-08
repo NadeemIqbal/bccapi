@@ -20,7 +20,7 @@ Features for clients based on the BCCAPI:
    * All client-server communication is secured using HTTPS. 
 
   * Logging In
-   * The client has a private key which is deterministically derived jut like the wallet private keys. When logging in to the server the client presents its public key and obtains a random challenge. The client hashes the challenge and signs it using its private key. The signed challenge is returned to the server along with the public key. On first login a new account is created, which is associated with the public of the client.
+   * The client has a private account key which is deterministically derived jut like the wallet private keys. When logging in to the server the client presents its public account key and obtains a random challenge. The client hashes the challenge and signs it using its private account key. The signed challenge is returned to the server along with the public account key. On first login a new account is created, which is associated with the public account key of the client.
 
   * Sending Coins
    * When sending coins the following process is used:
