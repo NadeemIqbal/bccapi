@@ -4,8 +4,6 @@
 
 Simply put the BCCAPI (Bit Coin Client API) allows you to create a light-weight secure Bitcoin client in Java. The BCCAPI connects to a server that holds the block chain, and which tracks the client’s wallet balance. The server only has knowledge of the clients public keys, and is in no position to spend funds owned by the client’s wallet.
 
-*If the text below is shown without bullets it is because of a bug in Google's bullet rendering on their wiki. Just refresh the page a few times and you should be good*
-
 Features for clients based on the BCCAPI:
   * Bandwidth. The client only transmits or receives data when it:
    * Logs in
