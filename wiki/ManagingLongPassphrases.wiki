@@ -1,7 +1,8 @@
 #summary Ideas on how we can avoid managing long passphrases using Shamir's Secret Sharing
 = Managing Long Passphrases =
 
-The security of BCCAPI's deterministic wallet depends on the strength of the passphrase. The user is required to either memorize the passphrase or write it down on a piece of paper. Memorizing may not be a valid option as you simply risk forgetting the passphrase. Writing the passphrase on paper poses different challenges:
+The security of BCCAPI's deterministic wallet depends on the strength of the seed from which the keys are derived. !BitcoinSpinner uses a randomly generated seed based on a cryptographically secure random generator. !SimpleClient uses a passphrase + salt approach and several rounds of key stretching. 
+For the passphrase + salt approach the user is required to either memorize the passphrase or write it down on a piece of paper. Memorizing may not be a valid option as you simply risk forgetting the passphrase. Writing the passphrase on paper poses different challenges:
 
  # It may get lost
  # Someone else may find it
