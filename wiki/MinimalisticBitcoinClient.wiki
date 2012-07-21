@@ -4,7 +4,7 @@
 
 For bitcoin to succeed we need a bitcoin client that appeals not to geeks, but to the broader population. The most important feature is simply put "Simplicity". We cannot expect average users to understand archane concepts of double spends, SHA-256 and elliptic curve cyptography.
 
-The is key:
+This is key:
  * Ease of installation
  * Ease of use
  * Security
